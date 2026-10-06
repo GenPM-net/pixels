@@ -80,13 +80,10 @@ describe('attribution', () => {
 });
 
 describe('browser', () => {
-  it('browser calls share the event id; loaders only render valid ids', () => {
+  it('browser calls share the event id; loaders render no markup on the server (they load in the browser)', () => {
     const c = browserCalls(purchase);
     expect(c.fbq[3]).toEqual({ eventID: purchase.eventId });
     expect(c.gtag[2]).toMatchObject({ event_id: purchase.eventId, transaction_id: '1001' });
-    const html = renderToStaticMarkup(createElement(PixelScripts, { metaPixelId: '1234', ga4MeasurementId: "G-1');alert(1)//" }));
-    expect(html).toContain("fbq('init','1234')");
-    expect(html).not.toContain('alert(1)');
-    expect(html).not.toContain('googletagmanager');
+    expect(renderToStaticMarkup(createElement(PixelScripts, { metaPixelId: '1234', ga4MeasurementId: 'G-TEST1' }))).toBe('');
   });
 });

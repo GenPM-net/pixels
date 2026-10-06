@@ -1,7 +1,7 @@
 {
   "$": 1,
   "n": "@core/pixels",
-  "v": "1.0.0",
+  "v": "1.0.1",
   "s": {
     "en": "Conversion tracking with consent: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, deduplicated event ids",
     "es": "Medición de conversiones con consentimiento: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, sin duplicados",

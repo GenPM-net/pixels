@@ -17,6 +17,8 @@ the same `eventId` on both sides so platforms deduplicate. Emails/phones are SHA
    Check each platform's current API version and event names before going live.
 2. Layout: `<ConsentGate category="analytics"><PixelScripts ga4MeasurementId=… /></ConsentGate>` and
    `<ConsentGate category="marketing"><PixelScripts metaPixelId=… tiktokPixelId=… /></ConsentGate>`.
+   `PixelScripts` renders nothing: once mounted (i.e. with consent) it injects each platform's loader into `<head>` once
+   per page, so re-mounts don't repeat `config`/`PageView`. A CSP must allow those script and connect origins.
 3. Browser events: `const eventId = newEventId(); track({ type: 'add_to_cart', eventId, … })` and send the same `eventId` to the server if it also tracks it.
 4. Purchases: after `startCheckout` returns `{ sessionId }`, `saveAttribution("checkout:" + sessionId, attributionFromRequest(req))`;
    when the order is paid (@core/orders `onOrderEvent('paid')`), `trackServer(purchaseEvent(order), await takeAttribution("checkout:" + order.cartId))`
