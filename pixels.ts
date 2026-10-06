@@ -6,7 +6,10 @@ import { getConsent } from '../consent/index.js';
 import { type TrackedEvent, TrackedEventSchema } from '../contracts/index.js';
 import { type Executor, getDb } from '../db/index.js';
 import { toDecimalString } from '../money/index.js';
+import { items, META_NAMES, TIKTOK_NAMES, value } from './browser.js';
 import { pixelAttributions } from './schema.js';
+
+export { browserCalls } from './browser.js';
 
 export type Attribution = {
   consent: { analytics: boolean; marketing: boolean };
@@ -70,8 +73,6 @@ async function sha256(value: string): Promise<string> {
 const normEmail = (e: string) => e.trim().toLowerCase();
 const normPhone = (p: string) => p.replace(/[^\d]/g, '');
 
-const META_NAMES = { view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', purchase: 'Purchase', lead: 'Lead' } as const;
-const TIKTOK_NAMES = { view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', purchase: 'CompletePayment', lead: 'SubmitForm' } as const;
 
 type Payload = { url: string; init: RequestInit };
 
@@ -83,8 +84,6 @@ export type PixelPlatform = {
   build(event: TrackedEvent, a: Attribution): Promise<Payload | null>;
 };
 
-const value = (e: TrackedEvent) => ('value' in e && e.value ? e.value : null);
-const items = (e: TrackedEvent) => ('items' in e ? e.items : []);
 
 export const ga4: PixelPlatform = {
   name: 'ga4',
@@ -216,12 +215,3 @@ export async function trackServer(event: TrackedEvent, a: Attribution, opts: { f
  * Llamadas del navegador equivalentes (para `track()` en el cliente): mismo `eventId` que el servidor para deduplicar.
  * Devuelve las instrucciones como datos; `client.ts` las ejecuta si las librerías están cargadas.
  */
-export function browserCalls(e: TrackedEvent) {
-  const v = value(e);
-  const common = { ...(v && { currency: v.currency, value: Number(toDecimalString(v)) }) };
-  return {
-    gtag: ['event', e.type === 'lead' ? 'generate_lead' : e.type, { ...common, event_id: e.eventId, ...(e.type === 'purchase' && { transaction_id: e.orderId }) }] as const,
-    fbq: ['track', META_NAMES[e.type], { ...common, ...(items(e).length && { content_ids: items(e).map((i) => i.id), content_type: 'product' }) }, { eventID: e.eventId }] as const,
-    ttq: [TIKTOK_NAMES[e.type], { ...common, event_id: e.eventId }] as const,
-  };
-}

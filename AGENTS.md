@@ -8,7 +8,7 @@ the same `eventId` on both sides so platforms deduplicate. Emails/phones are SHA
 
 ## Map
 - `index.ts` — server: `trackServer`, `attributionFromRequest`, `saveAttribution`, `takeAttribution`, `browserCalls`, `registerPixelPlatform`.
-- `client.ts` — client: `PixelScripts`, `track`, `newEventId`.
+- `client.ts` — client: `PixelScripts`, `track`, `newEventId`. `browser.ts` — `browserCalls` (no server code; safe in the browser).
 - `schema.ts` — `pixel_attributions` (consent + first-party ids kept until the payment webhook, 7 days).
 
 ## Integration
