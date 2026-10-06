@@ -1,8 +1,8 @@
 'use client';
 // Cliente: carga los píxeles (solo dentro de <ConsentGate>) y envía eventos con el mismo eventId que el servidor.
 import { createElement as h, type ReactNode, useEffect } from 'react';
-import type { TrackedEvent } from '../contracts/index.js';
-import { browserCalls } from './browser.js';
+import type { TrackedEvent } from '../contracts/index.ts';
+import { browserCalls } from './browser.ts';
 
 type W = Window & { gtag?: (...a: unknown[]) => void; fbq?: (...a: unknown[]) => void; ttq?: { track: (...a: unknown[]) => void } };
 

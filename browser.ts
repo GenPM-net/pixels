@@ -1,6 +1,6 @@
 // Parte de los píxeles sin servidor ni base de datos: la usan el navegador (`client.ts`) y el servidor.
-import type { TrackedEvent } from '../contracts/index.js';
-import { toDecimalString } from '../money/index.js';
+import type { TrackedEvent } from '../contracts/index.ts';
+import { toDecimalString } from '../money/index.ts';
 
 export const META_NAMES = { view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', purchase: 'Purchase', lead: 'Lead' } as const;
 export const TIKTOK_NAMES = { view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', purchase: 'CompletePayment', lead: 'SubmitForm' } as const;

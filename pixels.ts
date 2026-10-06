@@ -1,15 +1,15 @@
 // Envío de eventos de conversión desde el servidor (GA4 Measurement Protocol, Meta Conversions API, TikTok Events API)
 // y utilidades del navegador. Todo exige consentimiento: GA4 → analytics; Meta y TikTok → marketing.
 import { eq, lt } from 'drizzle-orm';
-import { clientIp } from '../antispam/index.js';
-import { getConsent } from '../consent/index.js';
-import { type TrackedEvent, TrackedEventSchema } from '../contracts/index.js';
-import { type Executor, getDb } from '../db/index.js';
-import { toDecimalString } from '../money/index.js';
-import { items, META_NAMES, TIKTOK_NAMES, value } from './browser.js';
-import { pixelAttributions } from './schema.js';
+import { clientIp } from '../antispam/index.ts';
+import { getConsent } from '../consent/index.ts';
+import { type TrackedEvent, TrackedEventSchema } from '../contracts/index.ts';
+import { type Executor, getDb } from '../db/index.ts';
+import { toDecimalString } from '../money/index.ts';
+import { items, META_NAMES, TIKTOK_NAMES, value } from './browser.ts';
+import { pixelAttributions } from './schema.ts';
 
-export { browserCalls } from './browser.js';
+export { browserCalls } from './browser.ts';
 
 export type Attribution = {
   consent: { analytics: boolean; marketing: boolean };

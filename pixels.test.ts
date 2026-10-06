@@ -1,14 +1,14 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { recordConsent } from '../consent/index.js';
-import * as consentSchema from '../consent/schema.js';
-import type { CommerceEvent } from '../contracts/index.js';
-import { testDb } from '../db/__fixtures__/pglite.js';
-import { money } from '../money/index.js';
-import { PixelScripts } from './client.js';
-import * as schema from './schema.js';
-import { type Attribution, attributionFromRequest, browserCalls, saveAttribution, takeAttribution, trackServer } from './index.js';
+import { recordConsent } from '../consent/index.ts';
+import * as consentSchema from '../consent/schema.ts';
+import type { CommerceEvent } from '../contracts/index.ts';
+import { testDb } from '../db/__fixtures__/pglite.ts';
+import { money } from '../money/index.ts';
+import { PixelScripts } from './client.ts';
+import * as schema from './schema.ts';
+import { type Attribution, attributionFromRequest, browserCalls, saveAttribution, takeAttribution, trackServer } from './index.ts';
 
 const purchase: CommerceEvent = {
   type: 'purchase',

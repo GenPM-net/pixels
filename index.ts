@@ -13,5 +13,5 @@ export {
   type TrackResult,
   tiktok,
   trackServer,
-} from './pixels.js';
-export { pixelAttributions } from './schema.js';
+} from './pixels.ts';
+export { pixelAttributions } from './schema.ts';
