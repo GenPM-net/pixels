@@ -1,0 +1,42 @@
+{
+  "$": 1,
+  "n": "@core/pixels",
+  "v": "1.0.0",
+  "s": {
+    "en": "Conversion tracking with consent: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, deduplicated event ids",
+    "es": "Medición de conversiones con consentimiento: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, sin duplicados",
+    "pt-BR": "Medição de conversões com consentimento: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, sem duplicados",
+    "fr": "Suivi des conversions avec consentement : GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, dédoublonnés",
+    "de": "Conversion-Tracking mit Einwilligung: GA4, Meta Pixel + Conversions API, TikTok Pixel + Events API, dedupliziert",
+    "ja": "同意に基づくコンバージョン計測：GA4、Meta ピクセル + CAPI、TikTok ピクセル + Events API、重複排除",
+    "zh-CN": "基于同意的转化追踪：GA4、Meta 像素 + Conversions API、TikTok 像素 + Events API，事件去重",
+    "ko": "동의 기반 전환 추적: GA4, Meta 픽셀 + Conversions API, TikTok 픽셀 + Events API, 이벤트 중복 제거"
+  },
+  "d": "src/lib/pixels",
+  "l": "MIT",
+  "k": [
+    "analytics",
+    "pixels",
+    "conversions",
+    "marketing",
+    "gdpr"
+  ],
+  "g": {
+    "@core/consent": "^1.0.0",
+    "@core/antispam": "^1.0.0",
+    "@core/contracts": "^1.0.0",
+    "@core/money": "^1.0.0",
+    "@core/db": "^1.0.0"
+  },
+  "p": {
+    "react": "^19.0.0"
+  },
+  "e": [
+    "GA4_MEASUREMENT_ID",
+    "GA4_API_SECRET",
+    "META_PIXEL_ID",
+    "META_CAPI_TOKEN",
+    "TIKTOK_PIXEL_ID",
+    "TIKTOK_EVENTS_TOKEN"
+  ]
+}
