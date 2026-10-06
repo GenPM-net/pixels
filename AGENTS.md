@@ -18,8 +18,9 @@ the same `eventId` on both sides so platforms deduplicate. Emails/phones are SHA
 2. Layout: `<ConsentGate category="analytics"><PixelScripts ga4MeasurementId=… /></ConsentGate>` and
    `<ConsentGate category="marketing"><PixelScripts metaPixelId=… tiktokPixelId=… /></ConsentGate>`.
 3. Browser events: `const eventId = newEventId(); track({ type: 'add_to_cart', eventId, … })` and send the same `eventId` to the server if it also tracks it.
-4. Purchases: when checkout starts, `saveAttribution(cart.id, attributionFromRequest(req))`; when the order is paid
-   (@core/orders `onOrderEvent('paid')`), `trackServer(purchaseEvent(order), await takeAttribution(cartId))` (`purchaseEvent` from @core/checkout).
+4. Purchases: after `startCheckout` returns `{ sessionId }`, `saveAttribution("checkout:" + sessionId, attributionFromRequest(req))`;
+   when the order is paid (@core/orders `onOrderEvent('paid')`), `trackServer(purchaseEvent(order), await takeAttribution("checkout:" + order.cartId))`
+   (@core/checkout stores the Stripe session id in `order.cartId`; `purchaseEvent` comes from @core/checkout).
 5. Verify with each platform's test tools (GA4 DebugView, Meta Test Events, TikTok Test Events).
 
 ## Conventions
