@@ -50,6 +50,7 @@ function installGa4(id: string): void {
   w.dataLayer ??= [];
   w.gtag ??= function gtag() {
     // gtag.js espera el objeto `arguments`, no un array.
+    // eslint-disable-next-line prefer-rest-params -- la cola de gtag.js exige el objeto `arguments`
     w.dataLayer!.push(arguments);
   };
   w.gtag('js', new Date());
@@ -62,6 +63,7 @@ function installMeta(id: string): void {
   if (!w.fbq) {
     const n = function fbq() {
       // fbevents.js procesa la cola de objetos `arguments`.
+      // eslint-disable-next-line prefer-rest-params -- la cola de fbevents.js exige el objeto `arguments`
       n.callMethod ? (n.callMethod as (...a: unknown[]) => void).apply(n, arguments as unknown as unknown[]) : (n.queue as unknown[]).push(arguments);
     } as Stub;
     Object.assign(n, { push: n, loaded: true, version: '2.0', queue: [] });
